@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.calorie_calendar.databinding.FragmentAddBinding
-import com.example.calorie_calendar.ui.dashboard.DashboardViewModel
 
 class AddFragment : Fragment() {
 
