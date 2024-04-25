@@ -40,6 +40,7 @@ class AddFragment : Fragment() {
         }
 
         return root
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -47,6 +48,22 @@ class AddFragment : Fragment() {
     }
 }
 class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener{
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val submitButton = findViewById<Button>(R.id.button)
+        super.onCreate(savedInstanceState)
+        submitButton.setOnClickListener {
+            val addCalories = findViewById<TextView>(R.id.editTextTextCalories).text.toString()
+            val addProtein = findViewById<TextView>(R.id.editTextTextProtein).text.toString()
+            val addFat = findViewById<TextView>(R.id.editTextTextFat).text.toString()
+            val addCarbs = findViewById<TextView>(R.id.editTextTextCarbohydrates).text.toString()
+            val addSugar = findViewById<TextView>(R.id.editTextTextSugar).text.toString()
+            val addSodium = findViewById<TextView>(R.id.editTextTextSodium).text.toString()
+            val addFiber = findViewById<TextView>(R.id.editTextTextFiber).text.toString()
+
+        }
+    }
+
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val spinner : Spinner = findViewById(R.id.spinner_meals)
         spinner.onItemSelectedListener = this
