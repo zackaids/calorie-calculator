@@ -89,14 +89,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="60dp"
         android:text="@string/calories"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toStartOf="@+id/editTextText2"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748"
+        app:layout_constraintVertical_bias="0.866"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -125,91 +125,6 @@
         app:layout_constraintVertical_bias="0.515"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textViewg1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="g"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteY="367dp" />
-
-    <TextView
-        android:id="@+id/textViewg2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="g"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteY="298dp" />
-
-    <TextView
-        android:id="@+id/textViewg3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="16dp"
-        android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/textViewg4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewg7"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewg4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/textViewg6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewg5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="g"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteY="331dp" />
-
-    <TextView
-        android:id="@+id/textViewg6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/textViewg2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewg7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:layout_marginBottom="22dp"
-        android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/textViewg3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_meals"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
     <EditText
         android:id="@+id/editTextTextCalories"
         android:layout_width="182dp"
@@ -218,8 +133,7 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextProtein"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg7"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95"
@@ -233,8 +147,7 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextSodium"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.98"
@@ -248,8 +161,7 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextSugar"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg6"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.966"
@@ -263,8 +175,7 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg1"
-        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.529"
@@ -278,17 +189,17 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextFat"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg3"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96"
+        app:layout_constraintVertical_bias="0.968"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextSodium"
         android:layout_width="172dp"
         android:layout_height="38dp"
+        android:layout_marginStart="116dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="10sp"
@@ -297,7 +208,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -308,8 +219,7 @@
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextCarbohydrates"
-        app:layout_constraintEnd_toStartOf="@+id/textViewg4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.982"
@@ -354,5 +264,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/editTextText3"
+        android:layout_width="22dp"
+        android:layout_height="319dp"
+        android:ems="10"
+        android:lineSpacingMultiplier="3.5"
+        android:lines="6"
+        android:text="g    g       g      g        g        g"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
