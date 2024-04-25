@@ -26,29 +26,27 @@ class AddFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(AddViewModel::class.java)
-
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textAdd
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val spinner: Spinner = root.findViewById(R.id.spinner_meals)
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.Meals,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
         }
+
         return root
-
-
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
 class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener{
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val spinner : Spinner = findViewById(R.id.spinner_meals)
         spinner.onItemSelectedListener = this
