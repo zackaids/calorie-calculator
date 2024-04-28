@@ -22,16 +22,9 @@ import java.io.BufferedWriter
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStreamWriter
-
-data class NutritionData(
-    val calories: String,
-    val protein: String,
-    val fat: String,
-    val carbs: String,
-    val sugar: String,
-    val sodium: String,
-    val fiber: String
-)
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -67,10 +60,13 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val addSodium = binding.editTextTextSodium.text.toString()
             val addFiber = binding.editTextTextFiber.text.toString()
 
-            val data = listOf(addCalories, addProtein, addFat, addCarbs, addSugar, addSodium, addFiber)
+            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val currentDate = sdf.format(Date())
+
+            val data = listOf("date", addCalories, addProtein, addFat, addCarbs, addSugar, addSodium, addFiber)
 
             try {
-                val fileOutputStream = requireContext().openFileOutput("test.csv", Context.MODE_PRIVATE)
+                val fileOutputStream = requireContext().openFileOutput("nutrition_data.csv", Context.MODE_PRIVATE)
                 val outputStreamWriter = OutputStreamWriter(fileOutputStream)
 
                 outputStreamWriter.write(data.joinToString(","))
@@ -110,6 +106,8 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 }
 
+
+
 //import android.os.Bundle
 //import android.view.LayoutInflater
 //import android.view.View
@@ -122,6 +120,9 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //import java.io.File
 //import java.io.FileWriter
 //import java.io.IOException
+//import java.text.SimpleDateFormat
+//import java.util.Date
+//import java.util.Locale
 //
 //data class NutritionData(
 //    val calories: String,
@@ -181,7 +182,6 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //                binding.editTextTextSodium.text.toString(),
 //                binding.editTextTextFiber.text.toString()
 //            )
-//            System.out.println("poop")
 //            appendToCSV(nutritionData)
 //            clearEditTexts()
 //        }
@@ -190,12 +190,15 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //    private fun appendToCSV(nutritionData: NutritionData) {
 //
 //        try {
-//            val file = File(requireContext().filesDir, "Data.csv")
+//            val file = File(requireContext().filesDir, "final.csv")
 //            if (!file.exists()) {
 //                file.createNewFile()
 //            }
 //            val csvWriter = CSVWriter(FileWriter(file, true))
-//            csvWriter.writeNext(arrayOf(nutritionData.calories, nutritionData.protein, nutritionData.fat, nutritionData.carbs, nutritionData.sugar, nutritionData.sodium, nutritionData.fiber))
+//            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+//            val currentDate = sdf.format(Date())
+//
+//            csvWriter.writeNext(arrayOf(currentDate, nutritionData.calories, nutritionData.protein, nutritionData.fat, nutritionData.carbs, nutritionData.sugar, nutritionData.sodium, nutritionData.fiber))
 //            csvWriter.close()
 //            Toast.makeText(requireContext(), "Data saved to CSV", Toast.LENGTH_SHORT).show()
 //        } catch (e: IOException) {
@@ -223,4 +226,4 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //        // Do nothing
 //    }
 //}
-
+//
