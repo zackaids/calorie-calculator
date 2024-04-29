@@ -63,13 +63,14 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val currentDate = sdf.format(Date())
 
-            val data = listOf("date", addCalories, addProtein, addFat, addCarbs, addSugar, addSodium, addFiber)
+            val data = listOf(addCalories, addProtein, addFat, addCarbs, addSugar, addSodium, addFiber)
 
             try {
-                val fileOutputStream = requireContext().openFileOutput("nutrition_data.csv", Context.MODE_PRIVATE)
+                val fileName = "nutrition_data_$currentDate.csv"
+                val fileOutputStream = requireContext().openFileOutput(fileName, Context.MODE_APPEND)
                 val outputStreamWriter = OutputStreamWriter(fileOutputStream)
 
-                outputStreamWriter.write(data.joinToString(","))
+                outputStreamWriter.write(data.joinToString(",") + "\n")
                 outputStreamWriter.close()
 
                 Toast.makeText(requireContext(), "Data saved to CSV file", Toast.LENGTH_SHORT).show()
@@ -198,7 +199,7 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 //            val currentDate = sdf.format(Date())
 //
-//            csvWriter.writeNext(arrayOf(currentDate, nutritionData.calories, nutritionData.protein, nutritionData.fat, nutritionData.carbs, nutritionData.sugar, nutritionData.sodium, nutritionData.fiber))
+//            csvWriter.writeNext(arrayOf("26-04-2024", nutritionData.calories, nutritionData.protein, nutritionData.fat, nutritionData.carbs, nutritionData.sugar, nutritionData.sodium, nutritionData.fiber))
 //            csvWriter.close()
 //            Toast.makeText(requireContext(), "Data saved to CSV", Toast.LENGTH_SHORT).show()
 //        } catch (e: IOException) {
@@ -226,4 +227,4 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //        // Do nothing
 //    }
 //}
-//
+
