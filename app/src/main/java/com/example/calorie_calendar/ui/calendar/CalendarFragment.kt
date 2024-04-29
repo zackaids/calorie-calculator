@@ -127,10 +127,10 @@ class CalendarFragment : Fragment() {
         dateTV = root.findViewById(R.id.text_calendar)
         calendarView = root.findViewById(R.id.calendarView)
 
-        loadNutritionData()
 
         calendarView.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
-            val date = "$dayOfMonth-${month + 1}-$year"
+            val date = String.format("%02d-%02d-%d", dayOfMonth, month + 1, year)
+            loadNutritionData(date)
             val nutrition = nutritionMap[date]
             dateTV.text = nutrition?.let {
                 "Calories: ${it.calories}, Protein: ${it.protein}, Fat: ${it.fat}, Carbs: ${it.carbs}, Sugar: ${it.sugar}, Sodium: ${it.sodium}, Fiber: ${it.fiber}"
@@ -140,26 +140,44 @@ class CalendarFragment : Fragment() {
         return root
     }
 
-    private fun loadNutritionData() {
+    private fun loadNutritionData(date: String) {
         try {
-            val inputStream: InputStream = resources.openRawResource(R.raw.nutrition_data) // assuming the CSV file is in res/raw folder
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            reader.readLine() // skip header
+            // Open the file for the selected date
+            val fileName = "nutrition_data_$date.csv"
+            val fileInputStream = requireContext().openFileInput(fileName)
+            val reader = BufferedReader(InputStreamReader(fileInputStream))
+
+            var totalCalories = 0
+            var totalProtein = 0
+            var totalFat = 0
+            var totalCarbs = 0
+            var totalSugar = 0
+            var totalSodium = 0
+            var totalFiber = 0
+
             var line = reader.readLine()
             while (line != null) {
                 val tokens = line.split(",")
                 if (tokens.size > 7) {
-                    val date = tokens[0]
-                    val nutrition = Nutrition(tokens[1].toInt(), tokens[2].toInt(), tokens[3].toInt(), tokens[4].toInt(), tokens[5].toInt(), tokens[6].toInt(), tokens[7].toInt())
-                    nutritionMap[date] = nutrition
+                    totalCalories += tokens[0].toInt()
+                    totalProtein += tokens[1].toInt()
+                    totalFat += tokens[2].toInt()
+                    totalCarbs += tokens[3].toInt()
+                    totalSugar += tokens[4].toInt()
+                    totalSodium += tokens[5].toInt()
+                    totalFiber += tokens[6].toInt()
                 }
                 line = reader.readLine()
             }
             reader.close()
+
+            val nutrition = Nutrition(totalCalories, totalProtein, totalFat, totalCarbs, totalSugar, totalSodium, totalFiber)
+            nutritionMap[date] = nutrition
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
