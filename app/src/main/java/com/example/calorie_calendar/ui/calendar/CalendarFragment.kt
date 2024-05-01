@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import com.example.calorie_calendar.R
 import com.example.calorie_calendar.databinding.FragmentCalendarBinding
 import java.io.BufferedReader
-import java.io.IOException
+import java.io.File
 import java.io.InputStreamReader
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 data class Nutrition(val calories: Int, val protein: Int, val fat: Int, val carbs: Int, val sugar: Int, val sodium: Int, val fiber: Int)
 
@@ -36,12 +39,21 @@ class CalendarFragment : Fragment() {
         calendarView = root.findViewById(R.id.calendarView)
 
 
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val currentDate = sdf.format(Date())
+
+        loadNutritionData(currentDate)
+        val nutrition = nutritionMap[currentDate]
+        dateTV.text = nutrition?.let {
+            "Calories: ${it.calories}\nProtein: ${it.protein} g\nFat: ${it.fat} g\nCarbs: ${it.carbs} g\nSugar: ${it.sugar} g\nSodium: ${it.sodium} mg\nFiber: ${it.fiber} g"
+        } ?: "No data available for $currentDate"
+
         calendarView.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
             val date = String.format("%02d-%02d-%d", dayOfMonth, month + 1, year)
             loadNutritionData(date)
             val nutrition = nutritionMap[date]
             dateTV.text = nutrition?.let {
-                "Calories: ${it.calories}\nProtein: ${it.protein} g\nFat: ${it.fat} g\nCarbs: ${it.carbs} g\nSugar: ${it.sugar} g\nSodium: ${it.sodium} g\nFiber: ${it.fiber} g"
+                "Calories: ${it.calories}\nProtein: ${it.protein} g\nFat: ${it.fat} g\nCarbs: ${it.carbs} g\nSugar: ${it.sugar} g\nSodium: ${it.sodium} mg\nFiber: ${it.fiber} g"
             } ?: "No data available for $date"
         })
 
@@ -49,9 +61,11 @@ class CalendarFragment : Fragment() {
     }
 
     private fun loadNutritionData(date: String) {
-        try {
-            // Open the file for the selected date
-            val fileName = "nutrition_data_$date.csv"
+        // Open the file for the selected date
+        val fileName = "nutrition_data_$date.csv"
+        val file = File(requireContext().filesDir, fileName)
+
+        if (file.exists()) {
             val fileInputStream = requireContext().openFileInput(fileName)
             val reader = BufferedReader(InputStreamReader(fileInputStream))
 
@@ -81,8 +95,6 @@ class CalendarFragment : Fragment() {
 
             val nutrition = Nutrition(totalCalories, totalProtein, totalFat, totalCarbs, totalSugar, totalSodium, totalFiber)
             nutritionMap[date] = nutrition
-        } catch (e: IOException) {
-            e.printStackTrace()
         }
     }
 
