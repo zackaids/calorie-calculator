@@ -44,31 +44,28 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val submitButton = root.findViewById<Button>(R.id.button)
         submitButton.setOnClickListener {
-            val addCalories = binding.editTextTextCalories.text.toString()
-            val addProtein = binding.editTextTextProtein.text.toString()
-            val addFat = binding.editTextTextFat.text.toString()
-            val addCarbs = binding.editTextTextCarbohydrates.text.toString()
-            val addSugar = binding.editTextTextSugar.text.toString()
-            val addSodium = binding.editTextTextSodium.text.toString()
-            val addFiber = binding.editTextTextFiber.text.toString()
+            val addCalories = if (binding.editTextTextCalories.text.toString().isEmpty()) "0" else binding.editTextTextCalories.text.toString()
+            val addProtein = if (binding.editTextTextProtein.text.toString().isEmpty()) "0" else binding.editTextTextProtein.text.toString()
+            val addFat = if (binding.editTextTextFat.text.toString().isEmpty()) "0" else binding.editTextTextFat.text.toString()
+            val addCarbs = if (binding.editTextTextCarbohydrates.text.toString().isEmpty()) "0" else binding.editTextTextCarbohydrates.text.toString()
+            val addSugar = if (binding.editTextTextSugar.text.toString().isEmpty()) "0" else binding.editTextTextSugar.text.toString()
+            val addSodium = if (binding.editTextTextSodium.text.toString().isEmpty()) "0" else binding.editTextTextSodium.text.toString()
+            val addFiber = if (binding.editTextTextFiber.text.toString().isEmpty()) "0" else binding.editTextTextFiber.text.toString()
 
             val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val currentDate = sdf.format(Date())
 
             val data = listOf(addCalories, addProtein, addFat, addCarbs, addSugar, addSodium, addFiber)
 
-            try {
-                val fileName = "nutrition_data_$currentDate.csv"
-                val fileOutputStream = requireContext().openFileOutput(fileName, Context.MODE_APPEND)
-                val outputStreamWriter = OutputStreamWriter(fileOutputStream)
 
-                outputStreamWriter.write(data.joinToString(",") + "\n")
-                outputStreamWriter.close()
+            val fileName = "nutrition_data_$currentDate.csv"
+            val fileOutputStream = requireContext().openFileOutput(fileName, Context.MODE_APPEND)
+            val outputStreamWriter = OutputStreamWriter(fileOutputStream)
 
-                Toast.makeText(requireContext(), "Data saved to CSV file", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            outputStreamWriter.write(data.joinToString(",") + "\n")
+            outputStreamWriter.close()
+
+            Toast.makeText(requireContext(), "Data saved to CSV file", Toast.LENGTH_SHORT).show()
 
             binding.editTextTextCalories.text.clear()
             binding.editTextTextProtein.text.clear()
@@ -78,8 +75,6 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.editTextTextSodium.text.clear()
             binding.editTextTextFiber.text.clear()
         }
-
-
         return root
     }
 
