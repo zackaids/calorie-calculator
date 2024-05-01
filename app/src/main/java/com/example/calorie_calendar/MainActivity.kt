@@ -1,9 +1,6 @@
 package com.example.calorie_calendar
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.View
-import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,9 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.calorie_calendar.databinding.ActivityMainBinding
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +30,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
     }
-
 }

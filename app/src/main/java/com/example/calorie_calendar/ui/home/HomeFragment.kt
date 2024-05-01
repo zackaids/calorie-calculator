@@ -49,9 +49,9 @@ class HomeFragment : Fragment() {
 
         loadNutritionData(currentDate)
         val nutrition = nutritionMap[currentDate]
-        val caloriesText = nutrition?.calories.toString() ?: "0"
+        val caloriesText = nutrition?.calories.toString()
 
-        var progressBar = root.findViewById<ProgressBar>(R.id.progress_bar)
+        val progressBar = root.findViewById<ProgressBar>(R.id.progress_bar)
         progressBar.progressDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.circular_progress_bar)
         progressText.text = caloriesText
         progressBar.max = calorieLimit
@@ -112,6 +112,7 @@ class HomeFragment : Fragment() {
             nutritionMap[date] = nutrition
         }
     }
+
     override fun onResume() {
         super.onResume()
         // Reload data and update progress bar when fragment is resumed

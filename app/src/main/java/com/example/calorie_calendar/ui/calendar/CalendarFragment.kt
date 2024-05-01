@@ -56,7 +56,6 @@ class CalendarFragment : Fragment() {
                 "Calories: ${it.calories}\nProtein: ${it.protein} g\nFat: ${it.fat} g\nCarbs: ${it.carbs} g\nSugar: ${it.sugar} g\nSodium: ${it.sodium} mg\nFiber: ${it.fiber} g"
             } ?: "No data available for $date"
         })
-
         return root
     }
 
